@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //creo la carpeta para las imagenes
-        Storage::deleteDirectory('public/images');
-        Storage::makeDirectory('public/images');
-
         //Llamo a los seeder/ factory de las tablas que voy a tener
          \App\Models\User::factory(10)->create();
 
