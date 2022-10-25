@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Models\Image;
 use App\Models\News;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $images = Image::all();
-    $noticias = News::all();
+    $noticias = News::latest()->take(4)->get();
     return view('welcome', compact('noticias', 'images'));
 });
 
@@ -27,6 +28,14 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $images = Image::all();
+        $noticias = News::latest()->take(2)->get();
+        return view('dashboard', compact('noticias', 'images'));
     })->name('dashboard');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->resource('/noticias', NewsController::class);

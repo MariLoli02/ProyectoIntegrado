@@ -13,9 +13,9 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Inicio') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-responsive-nav-link href="{{ route('noticias.index') }}" :active="request()->routeIs('noticias/*')">
                         {{ __('Noticias') }}
                     </x-jet-responsive-nav-link>
                     <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -29,8 +29,8 @@
                         <x-jet-dropdown>
                             <x-slot name="trigger">
                                 <button
-                                    class="flex items-center text-sm font-medium text-white hover:text-gray-300 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                    <div>Admin</div>
+                                    class="py-2 flex items-center text-sm font-medium text-white focus:outline-none transition duration-150 ease-in-out">
+                                    <div class="text-base">Admin</div>
 
                                     <div class="ml-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -48,8 +48,15 @@
                                 <!-- User Management -->
 
                                 <x-jet-dropdown-link href="{{ route('dashboard') }}">
-                                    {{ __('All Users') }}
+                                    {{ __('Gestionar Noticias') }}
                                 </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                    {{ __('Gestionar Guias') }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                    {{ __('Gestionar Juegos') }}
+                                </x-jet-dropdown-link>
+
                             </x-slot>
 
                         </x-jet-dropdown>

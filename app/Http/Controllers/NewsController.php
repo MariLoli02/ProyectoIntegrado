@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $noticias = News::orderBy('id')->get();
+        $images = Image::orderBy('id')->get();
+        return view('noticias.index', compact('noticias', 'images'));
     }
 
     /**
