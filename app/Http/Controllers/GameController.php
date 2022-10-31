@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -81,5 +82,11 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         //
+    }
+
+    public function indexUser(){
+        $games = Game::orderBy('id')->get();
+        $images = Image::orderBy('id')->get();
+        return view('users.indexGames', compact('games', 'images'));
     }
 }

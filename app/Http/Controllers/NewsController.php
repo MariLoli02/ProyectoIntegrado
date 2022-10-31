@@ -15,9 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $noticias = News::orderBy('id')->get();
-        $images = Image::orderBy('id')->get();
-        return view('noticias.index', compact('noticias', 'images'));
+       
     }
 
     /**
@@ -84,5 +82,13 @@ class NewsController extends Controller
     public function destroy(News $news)
     {
         //
+    }
+
+
+    public function indexUser()
+    {
+        $noticias = News::orderBy('id')->get();
+        $images = Image::orderBy('id')->get();
+        return view('users.indexNoticias', compact('noticias', 'images'));
     }
 }

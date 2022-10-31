@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guide;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class GuideController extends Controller
@@ -81,5 +82,11 @@ class GuideController extends Controller
     public function destroy(Guide $guide)
     {
         //
+    }
+
+    public function indexUser(){
+        $guides = Guide::orderBy('id')->get();
+        $images = Image::orderBy('id')->get();
+        return view('users.indexGuides', compact('guides', 'images'));
     }
 }

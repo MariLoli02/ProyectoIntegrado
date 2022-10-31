@@ -15,13 +15,13 @@
                     <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('noticias.index') }}" :active="request()->routeIs('noticias/*')">
+                    <x-jet-responsive-nav-link href="{{ route('news.indexUser') }}" :active="request()->routeIs('users/*')">
                         {{ __('Noticias') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-responsive-nav-link href="{{ route('guides.indexUser') }}" :active="request()->routeIs('users/*')">
                         {{ __('Guias') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-responsive-nav-link href="{{ route('games.indexUser') }}" :active="request()->routeIs('users/*')">
                         {{ __('Juegos') }}
                     </x-jet-responsive-nav-link>
 
