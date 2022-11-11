@@ -84,6 +84,11 @@ class GuideController extends Controller
         //
     }
 
+   
+    public function showUser(Guide $guide){
+        
+    }
+
     public function indexUser(){
         $guides = Guide::orderBy('id')->get();
         $images = Image::orderBy('id')->get();

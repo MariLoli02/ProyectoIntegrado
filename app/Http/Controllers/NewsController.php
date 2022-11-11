@@ -84,7 +84,6 @@ class NewsController extends Controller
         //
     }
 
-
     public function indexUser()
     {
         $noticias = News::orderBy('id')->get();

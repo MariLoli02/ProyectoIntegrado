@@ -20,11 +20,14 @@
     <!-- Sweet alerts -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Styles -->
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-[url({{Storage::url('imagesF/fondo.jpg')}})]">
+<body class="font-sans antialiased bg-cover bg-[url({{Storage::url('imagesF/fondo.jpg')}})]">
     <x-jet-banner />
 
     <div class="min-h-screen">

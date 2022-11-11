@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Genre;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $games = Game::orderBy('id')->get();
+        $images = Image::orderBy('id')->get();
+        return view('admin.indexGames', compact('games', 'images'));
     }
 
     /**
@@ -25,7 +28,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createGames');
     }
 
     /**
@@ -36,7 +39,14 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'string', 'min:3', 'unique:games,nombre_game'],
+            'contenido' => ['required', 'string', 'min:20'],
+            'plataforma' => ['required'],
+            'image' => ['required', 'image', 'max:2048']
+        ]);
+        
+
     }
 
     /**
@@ -47,7 +57,9 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        $images = Image::orderBy('id')->get();
+        
+        return view('admin.showGames', compact('game'));
     }
 
     /**

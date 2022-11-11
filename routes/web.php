@@ -40,7 +40,6 @@ Route::middleware([
 
 
 // RUTAS PARA LOS USUARIOS NORMALES
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -58,3 +57,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->get('/guides', [GuideController::class, 'indexUser'])->name('guides.indexUser');
+
+
+
+Route::middleware([
+    'middleware' => 'admin'
+])->resource('/Games', GameController::class)->except('show', 'indexUser');

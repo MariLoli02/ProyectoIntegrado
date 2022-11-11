@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gradient-to-r from-[#981F80] to-[#1F2198]">
+<nav x-data="{ open: false }" class="bg-gradient-to-r from-[#981F80] to-[#1F2198] sticky top-0 z-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,13 +15,13 @@
                     <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('news.indexUser') }}" :active="request()->routeIs('users/*')">
+                    <x-jet-responsive-nav-link href="{{ route('news.indexUser') }}" :active="request()->routeIs('noticias/*')">
                         {{ __('Noticias') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('guides.indexUser') }}" :active="request()->routeIs('users/*')">
+                    <x-jet-responsive-nav-link href="{{ route('guides.indexUser') }}" :active="request()->routeIs('guides/*')">
                         {{ __('Guias') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('games.indexUser') }}" :active="request()->routeIs('users/*')">
+                    <x-jet-responsive-nav-link href="{{ route('games.indexUser') }}" :active="request()->routeIs('games/*')">
                         {{ __('Juegos') }}
                     </x-jet-responsive-nav-link>
 
@@ -53,7 +53,7 @@
                                 <x-jet-dropdown-link href="{{ route('dashboard') }}">
                                     {{ __('Gestionar Guias') }}
                                 </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                <x-jet-dropdown-link href="{{ route('Games.index') }}">
                                     {{ __('Gestionar Juegos') }}
                                 </x-jet-dropdown-link>
 
