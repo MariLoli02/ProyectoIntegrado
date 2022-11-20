@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('titulo_news')->unique();
             $table->text('contenido_news');
             $table->string('autor_news');
-            $table->foreignId('image_news');
-            $table->foreign('image_news')->references('id')->on('images')->onDelete('cascade');
             $table->timestamps();
         });
     }

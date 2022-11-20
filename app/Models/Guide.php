@@ -9,15 +9,16 @@ class Guide extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['titulo_guide', 'contenido_guide', 'image_guide', 'game_id'];
+    // Campos editables
+    protected $fillable = ['titulo_guide', 'contenido_guide', 'game_id'];
 
     //relacion 1:N con game
     public function game(){
         return $this->belongsTo(Game::class);
     }
 
-    // Relacion 1:N con images
+    // Relacion polimorfica a uno con images
     public function image(){
-        return $this->belongsTo(Image::class);
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

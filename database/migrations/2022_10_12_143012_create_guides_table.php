@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('titulo_guide')->unique();
             $table->text('contenido_guide');
-            $table->foreignId('image_guide');
-            $table->foreign('image_guide')->references('id')->on('images')->onDelete('cascade');
             
             $table->foreignId('game_id');
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');

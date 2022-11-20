@@ -5,7 +5,7 @@
             <!-- Col -->
             <div class="w-full lg:w-1/2 bg-white bg-opacity-70 shadow-md p-5 rounded">
                 <div class="px-8 mb-4 text-center">
-                    <h3 class="pt-4 mb-2 text-2xl">Añade un Nuevo Juego</h3>
+                    <h3 class="pt-4 mb-2 text-2xl">Añade un Juego Nuevo</h3>
 
                 </div>
                 <x-form action="{{ route('Games.store') }}" enctype="multipart/form-data">
@@ -18,6 +18,14 @@
                         <option value="Pc">Pc</option>
                         <option value="PlayStation">PlayStation</option>
                     </x-form-select>
+
+                    <x-form-select label="Genero:" name="genero" class="rounded">
+                        @foreach ($generos as $genero)
+                        <option value="{{$genero->id}}">{{ $genero->nombre_genre }}</option>
+                        @endforeach
+                        
+                    </x-form-select>
+                    
                     <x-form-input class="rounded" type="file" id="img" name="image" label="Imagen:"
                         accept="image/*" />
                     <div class="grid grid-cols-1 mt-5 mx-7">

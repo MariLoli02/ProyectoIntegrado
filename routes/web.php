@@ -19,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $images = Image::all();
     $noticias = News::latest()->take(4)->get();
-    return view('welcome', compact('noticias', 'images'));
+    return view('welcome', compact('noticias'));
 });
 
 Route::middleware([
@@ -30,9 +29,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        $images = Image::all();
         $noticias = News::latest()->take(2)->get();
-        return view('dashboard', compact('noticias', 'images'));
+        return view('dashboard', compact('noticias'));
     })->name('dashboard');
 });
 
@@ -56,10 +54,16 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
+])->get('/games/show', [GameController::class, 'show'])->name('games.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
 ])->get('/guides', [GuideController::class, 'indexUser'])->name('guides.indexUser');
 
 
-
+// RUTAS DE LOS ADMIN
 Route::middleware([
     'middleware' => 'admin'
 ])->resource('/Games', GameController::class)->except('show', 'indexUser');

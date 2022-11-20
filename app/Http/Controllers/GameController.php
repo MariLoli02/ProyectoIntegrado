@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\Genre;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -17,8 +18,8 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::orderBy('id')->get();
-        $images = Image::orderBy('id')->get();
-        return view('admin.indexGames', compact('games', 'images'));
+        $generos = Genre::all();
+        return view('admin.indexGames', compact('games', 'generos'));
     }
 
     /**
@@ -28,7 +29,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('admin.createGames');
+        $generos = Genre::all();
+        return view('admin.createGames', compact('generos'));
     }
 
     /**
@@ -39,14 +41,40 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        // Valido los datos recibidos por el formulario
         $request->validate([
             'nombre' => ['required', 'string', 'min:3', 'unique:games,nombre_game'],
             'contenido' => ['required', 'string', 'min:20'],
             'plataforma' => ['required'],
+            'genero' => ['required'],
             'image' => ['required', 'image', 'max:2048']
         ]);
-        
 
+        // creo un nuevo juego
+        Game::create([
+            'nombre_game' => $request->nombre,
+            'plataforma' => $request->plataforma,
+            'contenido_game' => $request->contenido,
+            'genre_id' => $request->genero
+        ]);
+
+
+        // procedo a guardar la imagen
+        // obtengo el nombre del archivo
+        $filename = $request->file('image')->getClientOriginalName();
+        // lo guardo en el disco public
+        $request->file('image')->storeAs('imagesF', $filename, 'public');
+        // obtengo la ruta donde la he guardado
+        $url = Storage::url('imagesF/' . $filename);
+        // creo una instancia del modelo Image con el valor para el campo url
+        $game_last = Game::orderBy('created_at', 'desc')->take(1)->get();
+        //dd($game_last);
+        $image = new Image(['url' => $url, 'imageable_id' => $game_last]);
+        // inserto la imagen directamente desde el metodo save() de la relacion entre ambos
+        $game = new Game;
+        $game->image()->save($image);
+
+        return redirect()->route('Game.index')->with('info', 'Juego Creado con Éxito');
     }
 
     /**
@@ -57,9 +85,9 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        $images = Image::orderBy('id')->get();
-        
-        return view('admin.showGames', compact('game'));
+        $generos = Genre::orderBy('id')->get();
+        //dd($game);
+        return view('users.showGames', compact('generos', 'game'));
     }
 
     /**
@@ -96,7 +124,8 @@ class GameController extends Controller
         //
     }
 
-    public function indexUser(){
+    public function indexUser()
+    {
         $games = Game::orderBy('id')->get();
         $images = Image::orderBy('id')->get();
         return view('users.indexGames', compact('games', 'images'));

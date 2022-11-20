@@ -9,21 +9,21 @@ class Game extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nombre_game', 'plataforma', 'contenido_game', 'image_game'];
+    protected $fillable = ['nombre_game', 'plataforma', 'contenido_game', 'genre_id'];
 
      //relacion 1:N con guide
     public function guides(){
         return $this->hasMany(Guide::class);
     }
 
-     //Relacion N:M con genre un game tendrá varios genres
+     //Relacion N:1 con genre 
      public function genres(){
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsTo(Genre::class);
     }
 
-    // Relacion 1:N con images
+    // Relacion polimorfica a uno con images
     public function image(){
-        return $this->belongsTo(Image::class);
+        return $this->morphOne(Image::class, 'imageable');
     }
 
 }

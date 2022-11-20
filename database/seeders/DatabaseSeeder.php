@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Llamo a los seeder/ factory de las tablas que voy a tener
-         \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'admin',
             'is_admin' => true,
             'email' => 'admin@email.com',
-         ]);
+        ]);
         $this->call(ImageSeeder::class);
+        $this->call(GenreSeeder::class);
         $this->call(GameSeeder::class);
-        $this->call(GenreSeeder::class); 
-        $this->call(NewsSeeder::class); 
+        $this->call(NewsSeeder::class);
     }
 }

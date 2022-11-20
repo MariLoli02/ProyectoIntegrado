@@ -9,10 +9,11 @@ class News extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo_news', 'contenido_news', 'autor_news', 'image_news'];
+    // campos editables
+    protected $fillable = ['titulo_news', 'contenido_news', 'autor_news'];
 
-    // Relacion 1:N con images
+    // Relacion polimorfica a uno con images
     public function image(){
-        return $this->belongsTo(Image::class);
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

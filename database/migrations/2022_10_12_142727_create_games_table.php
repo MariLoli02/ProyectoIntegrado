@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('nombre_game')->unique();
             $table->enum('plataforma', ['Xbox', 'PlayStation', 'Pc', 'Nintendo']);
             $table->text('contenido_game');
-            
-            $table->foreignId('image_game');
-            $table->foreign('image_game')->references('id')->on('images')->onDelete('cascade');
+
+            $table->foreignId('genre_id');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
             $table->timestamps();
         });
     }

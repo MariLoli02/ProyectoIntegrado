@@ -18,19 +18,29 @@ class ImageSeeder extends Seeder
     {
         //
         Image::create([
-            'ruta' => 'imagesF/news_1.jpg'
+            'url' => 'imagesF/news_1.jpg',
+            'imageable_id' => '1',
+            'imageable_type' => 'App\Models\News'
         ]);
         Image::create([
-            'ruta' => 'imagesF/news_2.jpg'
+            'url' => 'imagesF/news_2.jpg',
+            'imageable_id' => '2',
+            'imageable_type' => 'App\Models\News'
         ]);
         Image::create([
-            'ruta' => 'imagesF/game_1.jpg'
+            'url' => 'imagesF/game_1.jpg',
+            'imageable_id' => '1',
+            'imageable_type' => 'App\Models\Game'
         ]);
         Image::create([
-            'ruta' => 'imagesF/game_2.jpg'
+            'url' => 'imagesF/game_2.jpg',
+            'imageable_id' => '2',
+            'imageable_type' => 'App\Models\Game'
         ]);
         Image::create([
-            'ruta' => 'imagesF/game_3.jpg'
+            'url' => 'imagesF/game_3.jpg',
+            'imageable_id' => '3',
+            'imageable_type' => 'App\Models\Game'
         ]);
     }
 }

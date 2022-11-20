@@ -51,6 +51,18 @@
     @stack('modals')
 
     @livewireScripts
+    
+    @if (session('info'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{session('info')}}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+        @endif
+
 </body>
 
 </html>

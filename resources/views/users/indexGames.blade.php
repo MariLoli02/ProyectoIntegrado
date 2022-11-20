@@ -8,16 +8,12 @@
                 <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
                     @foreach ($games as $game)
                         <div class="lg:flex">
-                            @foreach ($images as $image)
-                                @if ($image->id == $game->image_game)
-                                    <img class="object-cover w-full h-56 rounded-lg lg:w-64"
-                                        src="{{ Storage::url($image->ruta) }}" alt="image">
-                                @endif
-                            @endforeach
+                            <img class="object-cover w-full h-56 rounded-lg lg:w-64"
+                                src="{{ Storage::url($game->image->url) }}" alt="image">
                             <div class="flex flex-col justify-between py-6 lg:mx-6">
                                 <p>
                                     <a class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800"
-                                        href="">
+                                        href="{{route('games.show', $game)}}">
                                         {{ $game->nombre_game }}
                                     </a>
                                 </p>

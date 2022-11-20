@@ -9,17 +9,13 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ruta'];
+    // campos editables
+    protected $fillable = ['url'];
 
 
-    // Relaciones 1:N con las demas tablas
-    public function games(){
-        return $this->hasMany(image::class);
-    }
-    public function news(){
-        return $this->hasMany(News::class);
-    }
-    public function guides(){
-        return $this->hasMany(Guide::class);
+    // Relacion poliomorfica
+    public function imageable()
+    {    //transformar a pero no especificamos a que
+        return $this->morphTo();
     }
 }
