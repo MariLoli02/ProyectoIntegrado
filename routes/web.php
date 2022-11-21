@@ -50,11 +50,6 @@ Route::middleware([
     'verified'
 ])->get('/games', [GameController::class, 'indexUser'])->name('games.indexUser');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->get('/games/show', [GameController::class, 'show'])->name('games.show');
 
 Route::middleware([
     'auth:sanctum',

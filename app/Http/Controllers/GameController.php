@@ -50,31 +50,31 @@ class GameController extends Controller
             'image' => ['required', 'image', 'max:2048']
         ]);
 
-        // creo un nuevo juego
-        Game::create([
-            'nombre_game' => $request->nombre,
-            'plataforma' => $request->plataforma,
-            'contenido_game' => $request->contenido,
-            'genre_id' => $request->genero
-        ]);
-
-
-        // procedo a guardar la imagen
-        // obtengo el nombre del archivo
-        $filename = $request->file('image')->getClientOriginalName();
-        // lo guardo en el disco public
-        $request->file('image')->storeAs('imagesF', $filename, 'public');
-        // obtengo la ruta donde la he guardado
-        $url = Storage::url('imagesF/' . $filename);
-        // creo una instancia del modelo Image con el valor para el campo url
-        $game_last = Game::orderBy('created_at', 'desc')->take(1)->get();
-        //dd($game_last);
-        $image = new Image(['url' => $url, 'imageable_id' => $game_last]);
-        // inserto la imagen directamente desde el metodo save() de la relacion entre ambos
+        // guardo los datos del juego
         $game = new Game;
-        $game->image()->save($image);
 
-        return redirect()->route('Game.index')->with('info', 'Juego Creado con Éxito');
+        $game->nombre_game = $request->nombre;
+        $game->plataforma = $request->plataforma;
+        $game->contenido_game = $request->contenido;
+        $game->genre_id = $request->genero;
+
+        $game->save();
+
+        if ($request->hasFile('image')) {
+            // obtienes el nombre del archivo
+            $filename = $request->file('image')->getClientOriginalName();
+            // lo guardas en el disco 'public'en el directorio 'images'
+            $request->file('image')->storeAs('imagesF', $filename, 'public');
+            // obtienes la url del archivo que guardaste
+            $url = 'imagesF/' . $filename;
+            // creas una instancia del modelo Image con el valor para el campo 'url'
+            $image = new Image(['url' => $url]);
+            // insertas la Image directamente desde el método de save() de la relación
+            $game->image()->save($image);
+        }
+
+        // vuelvo a la pagina de la tabla
+        return redirect()->route('Games.index')->with('info', 'Juego Creado con Éxito');
     }
 
     /**
@@ -119,9 +119,20 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy($id)
     {
-        //
+        // Encuentro el juego del que recibo la id para eliminar
+        $game = Game::find($id);
+            //dd($game);
+        // guardo la ruta de la imagen del mismo
+        $imagen = $game->image->url;
+            //dd($imagen);
+        // Elimino la imagen de la carpeta storage
+        Storage::delete($imagen);
+        // Elimino el juego
+        $game->delete();
+        // vuelvo a la pagina de la tabla
+        return redirect()->route('Games.index')->with('info', 'Juego Eliminado con Éxito');
     }
 
     public function indexUser()

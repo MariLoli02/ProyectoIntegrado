@@ -45,11 +45,11 @@
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         @foreach ($generos as $genero)
-                                        @if ($genero->id == $item->genre_id)
-                                        <div class="flex items-center justify-center">
-                                            <span class="font-medium">{{ $genero->nombre_genre }}</span>
-                                        </div> 
-                                        @endif
+                                            @if ($genero->id == $item->genre_id)
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $genero->nombre_genre }}</span>
+                                            </div> 
+                                            @endif
                                         @endforeach
                                     </td>
 

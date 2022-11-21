@@ -10,7 +10,7 @@ class Image extends Model
     use HasFactory;
 
     // campos editables
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'imageable_id', 'imageable_type'];
 
 
     // Relacion poliomorfica
