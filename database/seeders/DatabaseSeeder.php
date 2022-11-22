@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Llamo a los seeder/ factory de las tablas que voy a tener
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(2)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'admin',

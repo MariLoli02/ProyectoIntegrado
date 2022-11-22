@@ -56,12 +56,12 @@
 
                                     <td class="py-3 px-6 text-center">
                                         <div class="flex item-center justify-center">
-                                            <form action="{{ route('Games.destroy', $item) }}" method="POST">
+                                            <form action="{{ route('Games.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-500 hover:text-red-700 mr-2"><i
                                                         class="fas fa-trash"></i></button>
-                                                <a href="" class="text-blue-500 hover:text-blue-700 mr-2"><i
+                                                <a href="{{ route('Games.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700 mr-2"><i
                                                         class="fas fa-edit"></i></a>
                                             </form>
                                         </div>
