@@ -30,7 +30,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        $noticias = News::latest()->take(2)->get();
+        $noticias = News::where('estado', 'Publicada')->orderBy('id', 'desc')->take(2)->get();
         return view('dashboard', compact('noticias'));
     })->name('dashboard');
 });
@@ -67,3 +67,12 @@ Route::middleware([
 Route::middleware([
     'middleware' => 'admin'
 ])->resource('/Genre', GenreController::class)->except('show', 'indexUser');
+
+Route::middleware([
+    'middleware' => 'admin'
+])->resource('/News', NewsController::class)->except('show', 'indexUser', 'cambiarEstado');
+
+// Ruta para cambiar el estado
+Route::middleware([
+    'middleware' => 'admin'
+])->put('News1/{news}', [NewsController::class, 'cambiarEstado'])->name('news.cambiarEstado');

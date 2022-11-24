@@ -5,7 +5,7 @@
             <!-- Col -->
             <div class="w-full lg:w-1/2 bg-white bg-opacity-70 shadow-md p-5 rounded">
                 <div class="px-8 mb-4 text-center">
-                    <h3 class="pt-4 mb-2 text-2xl">Añade un Genero Nuevo</h3>
+                    <h3 class="pt-4 mb-2 text-2xl">Añade un Nuevo Genero</h3>
 
                 </div>
                 <x-form action="{{ route('Genre.store') }}">

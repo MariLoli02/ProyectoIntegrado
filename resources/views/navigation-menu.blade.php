@@ -47,7 +47,7 @@
                             <x-slot name="content">
                                 <!-- User Management -->
 
-                                <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                <x-jet-dropdown-link href="{{ route('News.index') }}">
                                     {{ __('Gestionar Noticias') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('dashboard') }}">

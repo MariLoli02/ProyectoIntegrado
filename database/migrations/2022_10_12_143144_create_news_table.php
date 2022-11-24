@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('titulo_news')->unique();
             $table->text('contenido_news');
             $table->string('autor_news');
+            $table->enum('estado', ['Publicada', 'Borrador'])->default('Borrador');
             $table->timestamps();
         });
     }

@@ -56,7 +56,7 @@ class GameController extends Controller
         // Pongo la primera letra en mayuscula
         $nombre = ucfirst($request->nombre);
         $contenido = ucfirst($request->contenido);
-        
+
 
         $game->nombre_game = $nombre;
         $game->plataforma = $request->plataforma;
@@ -65,18 +65,18 @@ class GameController extends Controller
 
         $game->save();
 
-        if ($request->hasFile('image')) {
-            // obtengo el nombre del archivo
-            $filename = $request->file('image')->getClientOriginalName();
-            // lo guardo en el disco 'public'en el directorio 'imagesF'
-            $request->file('image')->storeAs('imagesF', $filename, 'public');
-            // obtengo la url del archivo que guardaste
-            $url = 'imagesF/' . $filename;
-            // creo una instancia del modelo Image con el valor para el campo 'url'
-            $image = new Image(['url' => $url]);
-            // inserto la Image directamente desde el método de save() de la relación
-            $game->image()->save($image);
-        }
+        // Guardo la imagen
+        // obtengo el nombre del archivo
+        $filename = $request->file('image')->getClientOriginalName();
+        // lo guardo en el disco 'public'en el directorio 'imagesF'
+        $request->file('image')->storeAs('imagesF', $filename, 'public');
+        // obtengo la url del archivo que guardaste
+        $url = 'imagesF/' . $filename;
+        // creo una instancia del modelo Image con el valor para el campo 'url'
+        $image = new Image(['url' => $url]);
+        // inserto la Image directamente desde el método de save() de la relación
+        $game->image()->save($image);
+
 
         // vuelvo a la pagina de la tabla
         return redirect()->route('Games.index')->with('info', 'Juego Creado con Éxito');
@@ -133,7 +133,7 @@ class GameController extends Controller
         // Pongo la primera letra en mayuscula
         $nombre = ucfirst($request->nombre);
         $contenido = ucfirst($request->contenido);
-        
+
 
         // Actualizo los datos del juego
         $game->update([
@@ -201,4 +201,5 @@ class GameController extends Controller
         $games = Game::orderBy('id')->get();
         return view('users.indexGames', compact('games'));
     }
+
 }
