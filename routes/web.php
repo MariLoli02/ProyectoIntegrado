@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $noticias = News::latest()->take(4)->get();
+    $noticias = News::where('estado', 'Publicada')->orderBy('id', 'desc')->take(2)->get();
     return view('welcome', compact('noticias'));
 });
 

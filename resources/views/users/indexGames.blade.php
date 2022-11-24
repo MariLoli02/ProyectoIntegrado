@@ -24,5 +24,6 @@
                 </div>
             </div>
         </section>
+        {{$games->links()}}
     </div>
 </x-app-layout>

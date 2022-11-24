@@ -24,5 +24,6 @@
                 </div>
             </div>
         </section>
+        {{$noticias->links()}}
     </div>
 </x-app-layout>
