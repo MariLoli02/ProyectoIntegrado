@@ -115,17 +115,17 @@ class GameController extends Controller
     public function update(Request $request, $game_id)
     {
         $game = Game::find($game_id);
-        
+
         // Valido los datos recibidos por el formulario
         $request->validate([
-            'nombre' => ['required', 'string', 'min:3', 'unique:games,nombre_game,'.$game->id],
+            'nombre' => ['required', 'string', 'min:3', 'unique:games,nombre_game,' . $game->id],
             'contenido' => ['required', 'string', 'min:20'],
             'plataforma' => ['required'],
             'genero' => ['required'],
             'image' => ['nullable', 'image', 'max:2048']
         ]);
 
-        
+
         // Actualizo los datos del juego
         $game->update([
             'nombre_game' => $request->nombre,
@@ -137,9 +137,14 @@ class GameController extends Controller
 
         // compruebo si he recibido una imagen
         if ($request->hasFile('image')) {
-            // elimino la imagen anterior
+            // Obtengo la url de la imagen antigua
             $imagen = $game->image->url;
+            // Obtengo todos los datos de la img antigua
+            $imagen_b = $game->image;
+            // elimino la imagen anterior del Storage
             Storage::delete($imagen);
+            // Elimino la imagen de la bbdd
+            $imagen_b->delete();
             // obtengo el nombre del archivo
             $filename = $request->file('image')->getClientOriginalName();
             // lo guardo en el disco 'public'en el directorio 'imagesF'
@@ -169,11 +174,15 @@ class GameController extends Controller
         //dd($game);
         // guardo la ruta de la imagen del mismo
         $imagen = $game->image->url;
-        //dd($imagen);
+        // Datos de la img para borrarla de la bbdd
+        $imagen_b = $game->image;
+        //dd($imagen_b);
         // Elimino la imagen de la carpeta storage
         Storage::delete($imagen);
         // Elimino el juego
         $game->delete();
+        // Elimino la img
+        $imagen_b->delete();
         // vuelvo a la pagina de la tabla
         return redirect()->route('Games.index')->with('info', 'Juego Eliminado con Éxito');
     }
@@ -181,7 +190,6 @@ class GameController extends Controller
     public function indexUser()
     {
         $games = Game::orderBy('id')->get();
-        $images = Image::orderBy('id')->get();
-        return view('users.indexGames', compact('games', 'images'));
+        return view('users.indexGames', compact('games'));
     }
 }

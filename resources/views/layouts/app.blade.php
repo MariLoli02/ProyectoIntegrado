@@ -27,7 +27,7 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-cover bg-[url({{Storage::url('imagesF/fondo.jpg')}})]">
+<body class="font-sans antialiased bg-cover bg-[url({{Storage::url('img/fondo.jpg')}})]">
     <x-jet-banner />
 
     <div class="min-h-screen">

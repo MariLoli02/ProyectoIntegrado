@@ -1,1 +1,1 @@
-<img class="w-12 rounded-full"  src="{{Storage::url('imagesF/logo.png')}}"/>
+<img class="w-12 rounded-full"  src="{{Storage::url('img/logo.png')}}"/>
