@@ -14,7 +14,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $generos = Genre::orderBy('id')->paginate(4);
+        return view('admin.indexGenres', compact('generos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createGenre');
     }
 
     /**
@@ -35,7 +36,19 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'min:3', 'unique:genres,nombre_genre'],
+            'contenido' => ['required', 'min:10']
+        ]);
+
+        $nombre = ucfirst($request->nombre);
+        $contenido = ucfirst($request->contenido);
+        Genre::create([
+            'nombre_genre' => $nombre,
+            'contenido_genre' => $contenido
+        ]);
+
+        return redirect()->route('Genre.index')->with('info', 'Genero Creado con Éxito');
     }
 
     /**
@@ -55,9 +68,12 @@ class GenreController extends Controller
      * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function edit(Genre $genre)
+    public function edit($id)
     {
-        //
+       // Encuentro el genero del que recibo la id para editar
+       $genre = Genre::find($id);
+       
+       return view('admin.editGenre', compact('genre'));
     }
 
     /**
@@ -67,9 +83,24 @@ class GenreController extends Controller
      * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Genre $genre)
+    public function update(Request $request, $genre_id)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'min:3', 'unique:genres,nombre_genre,'.$genre_id],
+            'contenido' => ['required', 'min:10']
+        ]);
+
+        $genre = Genre::find($genre_id);
+
+        $nombre = ucfirst($request->nombre);
+        $contenido = ucfirst($request->contenido);
+
+        $genre->update([
+            'nombre_genre' => $nombre,
+            'contenido_genre' => $contenido
+        ]);
+
+        return redirect()->route('Genre.index')->with('info', 'Genero Actualizado con Éxito');
     }
 
     /**
@@ -78,8 +109,15 @@ class GenreController extends Controller
      * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Genre $genre)
+    public function destroy($id)
     {
-        //
+        // Encuentro el genero del que recibo la id para eliminar
+        $genre = Genre::find($id);
+
+        // Elimino el registro de la bbdd
+        $genre->delete();
+
+        // Redirijo al usuario a la pagina principal
+        return redirect()->route('Genre.index')->with('info', 'Genero Borrado con Éxito');
     }
 }

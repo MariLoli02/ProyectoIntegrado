@@ -28,8 +28,8 @@
                     
                     <x-form-input class="rounded" type="file" id="img" name="image" label="Imagen:"
                         accept="image/*" />
-                    <div class="grid grid-cols-1 mt-5 mx-7">
-                        <div class="flex items-center justify-center w-40 mb-4 ">
+                        <div class="flex items-center justify-center mt-5 mx-7">
+                        <div class="w-40 mb-4">
                             <img id="image"
                                 src="https://alemautos.com.co/themes/kol3-cars/assets/images/no-image.png"
                                 class="rounded" />

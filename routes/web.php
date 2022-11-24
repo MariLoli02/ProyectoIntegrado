@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\NewsController;
 use App\Models\Image;
@@ -62,3 +63,7 @@ Route::middleware([
 Route::middleware([
     'middleware' => 'admin'
 ])->resource('/Games', GameController::class)->except('show', 'indexUser');
+
+Route::middleware([
+    'middleware' => 'admin'
+])->resource('/Genre', GenreController::class)->except('show', 'indexUser');

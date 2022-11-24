@@ -17,7 +17,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::orderBy('id')->get();
+        $games = Game::orderBy('id')->paginate(4);
         $generos = Genre::all();
         return view('admin.indexGames', compact('games', 'generos'));
     }
@@ -53,9 +53,14 @@ class GameController extends Controller
         // guardo los datos del juego
         $game = new Game;
 
-        $game->nombre_game = $request->nombre;
+        // Pongo la primera letra en mayuscula
+        $nombre = ucfirst($request->nombre);
+        $contenido = ucfirst($request->contenido);
+        
+
+        $game->nombre_game = $nombre;
         $game->plataforma = $request->plataforma;
-        $game->contenido_game = $request->contenido;
+        $game->contenido_game = $contenido;
         $game->genre_id = $request->genero;
 
         $game->save();
@@ -125,11 +130,15 @@ class GameController extends Controller
             'image' => ['nullable', 'image', 'max:2048']
         ]);
 
+        // Pongo la primera letra en mayuscula
+        $nombre = ucfirst($request->nombre);
+        $contenido = ucfirst($request->contenido);
+        
 
         // Actualizo los datos del juego
         $game->update([
-            'nombre_game' => $request->nombre,
-            'contenido_game' => $request->contenido,
+            'nombre_game' => $nombre,
+            'contenido_game' => $contenido,
             'plataforma' => $request->plataforma,
             'genre_id' => $request->genero
         ]);

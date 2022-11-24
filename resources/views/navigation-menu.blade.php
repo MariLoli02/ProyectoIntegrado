@@ -56,6 +56,9 @@
                                 <x-jet-dropdown-link href="{{ route('Games.index') }}">
                                     {{ __('Gestionar Juegos') }}
                                 </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('Genre.index') }}">
+                                    {{ __('Gestionar Generos') }}
+                                </x-jet-dropdown-link>
 
                             </x-slot>
 
