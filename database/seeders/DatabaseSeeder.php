@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ImageSeeder::class);
         $this->call(GenreSeeder::class);
         $this->call(GameSeeder::class);
+        $this->call(GuideSeeder::class);
         $this->call(NewsSeeder::class);
     }
 }

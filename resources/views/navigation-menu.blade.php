@@ -50,7 +50,7 @@
                                 <x-jet-dropdown-link href="{{ route('News.index') }}">
                                     {{ __('Gestionar Noticias') }}
                                 </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                <x-jet-dropdown-link href="{{ route('Guide.index') }}">
                                     {{ __('Gestionar Guias') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('Games.index') }}">

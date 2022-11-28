@@ -42,5 +42,20 @@ class ImageSeeder extends Seeder
             'imageable_id' => '3',
             'imageable_type' => 'App\Models\Game'
         ]);
+        Image::create([
+            'url' => 'imagesF/guide_1.jpg',
+            'imageable_id' => '1',
+            'imageable_type' => 'App\Models\Guide'
+        ]);
+        Image::create([
+            'url' => 'imagesF/guide_2.jpg',
+            'imageable_id' => '2',
+            'imageable_type' => 'App\Models\Guide'
+        ]);
+        Image::create([
+            'url' => 'imagesF/guide_3.jpg',
+            'imageable_id' => '3',
+            'imageable_type' => 'App\Models\Guide'
+        ]);
     }
 }

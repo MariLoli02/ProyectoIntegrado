@@ -76,3 +76,7 @@ Route::middleware([
 Route::middleware([
     'middleware' => 'admin'
 ])->put('News1/{news}', [NewsController::class, 'cambiarEstado'])->name('news.cambiarEstado');
+
+Route::middleware([
+    'middleware' => 'admin'
+])->resource('/Guide', GuideController::class)->except('show', 'indexUser');
