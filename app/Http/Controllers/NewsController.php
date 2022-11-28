@@ -193,10 +193,12 @@ class NewsController extends Controller
     }
     
     public function cambiarEstado($news_id){
+        // Busco la noticia de la que recibo el id
         $news = News::find($news_id);
         //dd($news);
         $estado = "Nada";
 
+        // Compruebo el estado y lo cambio al contrario
         if($news->estado == "Borrador"){
             $estado = "Publicada";
         }
@@ -204,10 +206,11 @@ class NewsController extends Controller
         if($news->estado == "Publicada"){
             $estado = "Borrador";
         }
-
+        // Guardo el nuevo estado
         $news->estado = $estado;
         $news->save();
 
+        // Mando un mensaje de que se ha realizado correctamente el cambio
         return redirect()->route('News.index')->with('info', 'Estado de la Noticia Actualizado con Éxito');
     }
 }

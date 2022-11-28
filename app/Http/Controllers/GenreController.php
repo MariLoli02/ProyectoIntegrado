@@ -36,18 +36,23 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
+        // Valido los datos que recibo por el formulario
         $request->validate([
             'nombre' => ['required', 'min:3', 'unique:genres,nombre_genre'],
             'contenido' => ['required', 'min:10']
         ]);
 
+        // Pongo la primera letra en mayuscula
         $nombre = ucfirst($request->nombre);
         $contenido = ucfirst($request->contenido);
+
+        // Guardo los datos 
         Genre::create([
             'nombre_genre' => $nombre,
             'contenido_genre' => $contenido
         ]);
 
+        // Me redirijo a la pagina principal con un mensaje de que se ha creado con exito
         return redirect()->route('Genre.index')->with('info', 'Genero Creado con Éxito');
     }
 
@@ -85,21 +90,26 @@ class GenreController extends Controller
      */
     public function update(Request $request, $genre_id)
     {
+        // Valido los datos que recibo por el formulario
         $request->validate([
             'nombre' => ['required', 'min:3', 'unique:genres,nombre_genre,'.$genre_id],
             'contenido' => ['required', 'min:10']
         ]);
 
+        // Encuentro el genero que estoy editando
         $genre = Genre::find($genre_id);
 
+        // Pongo la primera letra en mayuscula
         $nombre = ucfirst($request->nombre);
         $contenido = ucfirst($request->contenido);
 
+        // Guardo los nuevos datos
         $genre->update([
             'nombre_genre' => $nombre,
             'contenido_genre' => $contenido
         ]);
 
+        // Me redirijo a la pagina principal con un mensaje de que se ha actualizado con exito
         return redirect()->route('Genre.index')->with('info', 'Genero Actualizado con Éxito');
     }
 

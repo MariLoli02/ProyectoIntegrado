@@ -194,8 +194,8 @@ class GuideController extends Controller
     }
 
     public function indexUser(){
-        $guides = Guide::orderBy('id')->get();
-        $images = Image::orderBy('id')->get();
-        return view('users.indexGuides', compact('guides', 'images'));
+        $guides = Guide::orderBy('id')->paginate(4);
+        $games = Game::orderBy('id')->get();
+        return view('users.indexGuides', compact('guides', 'games'));
     }
 }

@@ -57,7 +57,7 @@ class GameController extends Controller
         $nombre = ucfirst($request->nombre);
         $contenido = ucfirst($request->contenido);
 
-
+        // Guardo los datos
         $game->nombre_game = $nombre;
         $game->plataforma = $request->plataforma;
         $game->contenido_game = $contenido;

@@ -59,6 +59,8 @@ Route::middleware([
 ])->get('/guides', [GuideController::class, 'indexUser'])->name('guides.indexUser');
 
 
+
+
 // RUTAS DE LOS ADMIN
 Route::middleware([
     'middleware' => 'admin'

@@ -3,7 +3,7 @@
         <section class="mt-11 bg-white rounded-md opacity-80">
             <div class="container px-6 py-10 mx-auto">
                 <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-[#981F80]">
-                    Guias
+                    Guías
                 </h1>
                 <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
                     @foreach ($guides as $guide)
@@ -14,14 +14,21 @@
                                 <p>
                                     <a class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800"
                                         href="">
-                                        {{ $game->titulo_guide }}
+                                        {{ $guide->titulo_guide }}
                                     </a>
                                 </p>
-                                <span class="text-sm text-gray-800 dark:text-gray-800">{{ $game->game_id }}</span>
+                                @foreach ($games as $game)
+                                    @if ($game->id == $guide->game_id)
+                                        <span
+                                            class="text-sm text-gray-800 dark:text-gray-800">{{ $game->nombre_game }}</span>
+                                    @endif
+                                @endforeach
+
                             </div>
                         </div>
                     @endforeach
                 </div>
+                {{ $guides->links() }}
             </div>
         </section>
     </div>
