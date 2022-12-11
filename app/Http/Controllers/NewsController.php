@@ -82,9 +82,10 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show($news_id)
     {
-        //
+        $news = News::find($news_id);
+        return view('users.showNoticias', compact('news'));
     }
 
     /**

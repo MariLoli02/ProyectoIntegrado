@@ -13,7 +13,7 @@
                             <div class="flex flex-col justify-between py-6 lg:mx-6">
                                 <p>
                                     <a class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800"
-                                        href="">
+                                        href="{{route('guide.show', $guide->id)}}">
                                         {{ $guide->titulo_guide }}
                                     </a>
                                 </p>

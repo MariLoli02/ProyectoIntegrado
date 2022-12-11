@@ -437,9 +437,9 @@
                                 src="{{ Storage::url($noticia->image->url) }}" alt="image">
 
                             <div class="flex flex-col justify-between py-6 lg:mx-6">
-                                <p class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800">
+                                <a href="{{ route('news.show', $noticia->id) }}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800">
                                     {{ $noticia->titulo_news }}
-                                </p>
+                                </a>
                                 <span class="text-sm text-gray-800 dark:text-gray-800">{{ $noticia->autor_news }}</span>
                             </div>
                         </div>

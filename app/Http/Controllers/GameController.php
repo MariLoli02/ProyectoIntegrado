@@ -88,8 +88,9 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($game_id)
     {
+        $game = Game::find($game_id);
         $generos = Genre::orderBy('id')->get();
         //dd($game);
         return view('users.showGames', compact('generos', 'game'));

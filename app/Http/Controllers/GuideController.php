@@ -85,9 +85,10 @@ class GuideController extends Controller
      * @param  \App\Models\Guide  $guide
      * @return \Illuminate\Http\Response
      */
-    public function show(Guide $guide)
+    public function show($guide_id)
     {
-        //
+        $guide = Guide::find($guide_id);
+        return view('users.showGuides', compact('guide'));
     }
 
     /**
@@ -186,11 +187,6 @@ class GuideController extends Controller
          $imagen_b->delete();
          // vuelvo a la pagina de la tabla
          return redirect()->route('Guide.index')->with('info', 'Guia Eliminada con Éxito');
-    }
-
-   
-    public function showUser(Guide $guide){
-        
     }
 
     public function indexUser(){

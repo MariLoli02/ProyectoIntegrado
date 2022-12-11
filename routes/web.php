@@ -58,6 +58,30 @@ Route::middleware([
     'verified'
 ])->get('/guides', [GuideController::class, 'indexUser'])->name('guides.indexUser');
 
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->get('/showGames/{game}', [GameController::class, 'show'])->name('games.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->get('/showGenre/{genre}', [GenreController::class, 'show'])->name('genre.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->get('/showGuide/{guide}', [GuideController::class, 'show'])->name('guide.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->get('/showNews/{news}', [NewsController::class, 'show'])->name('news.show');
+
 
 
 
