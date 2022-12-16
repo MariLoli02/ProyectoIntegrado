@@ -87,9 +87,11 @@ class GuideController extends Controller
      */
     public function show($guide_id)
     {
+        $games = Game::orderBy('id')->get(); 
         $guide = Guide::find($guide_id);
-        return view('users.showGuides', compact('guide'));
+        return view('users.showGuides', compact('games', 'guide'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

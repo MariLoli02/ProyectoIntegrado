@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\Guide;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -91,9 +92,10 @@ class GameController extends Controller
     public function show($game_id)
     {
         $game = Game::find($game_id);
+        $guides = Guide::orderBy('id')->get();
         $generos = Genre::orderBy('id')->get();
         //dd($game);
-        return view('users.showGames', compact('generos', 'game'));
+        return view('users.showGames', compact('generos', 'guides', 'game'));
     }
 
     /**
