@@ -407,7 +407,7 @@
 
 </head>
 
-<body class="antialiased bg-[url({{ Storage::url('img/fondo.jpg') }})]">
+<body class="antialiased bg-cover bg-[url({{ Storage::url('img/fondo.jpg') }})]">
     <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -437,7 +437,8 @@
                                 src="{{ Storage::url($noticia->image->url) }}" alt="image">
 
                             <div class="flex flex-col justify-between py-6 lg:mx-6">
-                                <a href="{{ route('news.show', $noticia->id) }}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800">
+                                <a href="{{ route('news.show', $noticia->id) }}"
+                                    class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800">
                                     {{ $noticia->titulo_news }}
                                 </a>
                                 <span class="text-sm text-gray-800 dark:text-gray-800">{{ $noticia->autor_news }}</span>
@@ -448,6 +449,28 @@
             </div>
         </section>
     </div>
+    <footer
+        class="mt-40 p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 bg-gradient-to-r from-[#981F80] to-[#1F2198]">
+        <span class="text-sm text-white sm:text-center ">© 2022 <a href=""
+                class="hover:underline">GameStation</a>.
+            All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm text-white sm:mt-0">
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">Social Media</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline">Contact</a>
+            </li>
+        </ul>
+    </footer>
 </body>
+
 
 </html>

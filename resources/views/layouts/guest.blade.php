@@ -18,9 +18,12 @@
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 antialiased bg-[url({{Storage::url('img/fondo.jpg')}})]">
+    <div class="font-sans text-gray-900 antialiased bg-cover bg-[url({{ Storage::url('img/fondo.jpg') }})]">
         {{ $slot }}
+
     </div>
+    
 </body>
+
 
 </html>
