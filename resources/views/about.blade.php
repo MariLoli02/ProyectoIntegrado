@@ -425,29 +425,32 @@
             </div>
         @endif
         <!-- component -->
-        <section class="mt-11 bg-white rounded-md opacity-80">
-            <div class="container px-6 py-10 mx-auto">
-                <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-[#981F80]">
-                    Últimas noticias
-                </h1>
-                <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-                    @foreach ($noticias as $noticia)
-                        <div class="lg:flex">
-                            <img class="object-cover w-full h-56 rounded-lg lg:w-64"
-                                src="{{ Storage::url($noticia->image->url) }}" alt="image">
-
-                            <div class="flex flex-col justify-between py-6 lg:mx-6">
-                                <a href="{{ route('news.show', $noticia->id) }}"
-                                    class="text-xl font-semibold text-gray-800 hover:underline dark:text-gray-800">
-                                    {{ $noticia->titulo_news }}
-                                </a>
-                                <span class="text-sm text-gray-800 dark:text-gray-800">{{ $noticia->autor_news }}</span>
-                            </div>
-                        </div>
-                    @endforeach
+        <div class="py-16 bg-white opacity-80 rounded">
+            <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+                <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
+                    <div class="md:5/12 lg:w-5/12">
+                        <img class="rounded" src="{{ Storage::url('img/logo.png') }}" alt="image" loading="lazy">
+                    </div>
+                    <div class="md:7/12 lg:w-6/12">
+                        <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Sobre Nosotros</h2>
+                        <p class="mt-6 text-gray-600">GameStation es una página que se centra sobre todo en la
+                            comunicación de información sobre el
+                            mundo de los videojuegos, pero además de noticias sobre tecnología.</p>
+                        <p class="mt-4 text-gray-600">Permitiendo al usuario sumergirse en el mundo de las ultimas
+                            novedades sobre videojuegos,
+                            aplicaciones y dispositivos.</p>
+                        <p>El único requisito para poder disfrutar de todo este contenido es registrarse y comenzar a
+                            disfrutar de la información</p>
+                        <p>
+                            Dirigido a los fans de los videojuegos y a la gente curiosa por la tecnología, si surge
+                            alguna duda aquí está la respuesta.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+
+
     </div>
     <footer
         class="mt-40 p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 bg-gradient-to-r from-[#981F80] to-[#1F2198]">
@@ -457,10 +460,10 @@
         </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm text-white sm:mt-0">
             <li>
-                <a href="{{route('about')}}" class="mr-4 hover:underline md:mr-6 ">About</a>
+                <a href="{{ route('about') }}" class="mr-4 hover:underline md:mr-6 ">About</a>
             </li>
             <li>
-                <a href="{{route('privacidad')}}" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                <a href="{{ route('privacidad') }}" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
             </li>
             <li>
                 <a href="https://www.instagram.com/" class="hover:underline">Social Media</a>

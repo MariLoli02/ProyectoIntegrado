@@ -24,6 +24,13 @@ Route::get('/', function () {
     return view('welcome', compact('noticias'));
 });
 
+Route::get('/about', function(){
+    return view('about');
+})->name('about');
+Route::get('/privacidad', function(){
+    return view('privacidad');
+})->name('privacidad');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
